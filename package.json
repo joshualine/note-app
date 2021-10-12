@@ -1,0 +1,16 @@
+{
+  "name": "note-api",
+  "version": "1.0.0",
+  "description": "This is a note api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": " nodemon index.js"
+  },
+  "author": "Joshua Chinwendu",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
