@@ -1,95 +1,71 @@
 const http = require("http");
-const fs = require("fs")
+const notes = require("./myModule/NoteClass")
 const testFile = require("./data/testFile.json")
 
 
 
 const server = http.createServer((req, res) => {
-  // res.writeHead(200, { 'Content-Type': 'application/json' })
-  // res.end(JSON.stringify(testFile))
+
+  if(req.url === '/' && req.method === 'GET') {
+    notes.getAllNotes(res)
+  } else if(req.url.match(/\/view\/\w+/) && req.method === 'GET') {
+    const noteName = req.url.split('/')[2]
+    notes.getOneNote(res, noteName)
+  } else if(req.url === '/create' && req.method === 'POST') {
+    notes.createNote(res, content)
+  } else if(req.url === '/update' && req.method === 'PUT') {
+    notes.updateNote(res, newContent)
+  } else if(req.url === '/delete' && req.method === 'DELETE') {
+    notes.deleteNote(res)
+  } else if(req.url === '/rename' && req.method === 'POST') {
+    notes.renameNote(res, oldName, newName)
+  } else {
+    res.writeHead(404, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify({ message: 'Route not found'}))
+
+  }
 
   // if(req.url === '/read' && req.method === 'GET') {
-  //   fs.readdir('data', (err, files) => { 
-  //     res.writeHead(200, { 'Content-Type': 'application/json' });
-  //     if (err) {
-  //       let json = { status:false, message: 'It seems there is a mistake somewhere' };
-  //       res.end(JSON.stringify(json));
-  //     }else {
-  //       let json = { status:true, message:'Files Retrieved:', data:files };
-  //       res.end(JSON.stringify(json));
-  //     }
-  //   }) 
-  // } else {
-  //   res.writeHead(404, { 'Content-Type': 'application/json' })
-  //   res.end(JSON.stringify({ message: 'Route not found'}))
-  // }
-
-  // if(req.url === '/read' && req.method === 'GET') {
-  //   fs.readFile('data/testFile.txt', 'utf-8', (err, files) => { 
-  //     res.writeHead(200, { 'Content-Type': 'application/json' });
-  //     if (err) {
-  //       let json = { status:false, message: 'It seems there is a mistake somewhere' };
-  //       res.end(JSON.stringify(json));
-  //     }else {
-  //       console.log(files)
-  //       let json = { status:true, message:'Files Retrieved:', data:files };
-  //       res.end(JSON.stringify(json));
-  //     }
-  //   }) 
+  //   notes.getOneNote(res)
   //   } else {
   //     res.writeHead(404, { 'Content-Type': 'application/json' })
   //     res.end(JSON.stringify({ message: 'Route not found'}))
   // }
 
-    const files = "a new text for testing something i am building"
-    // if(req.url === '/read' && req.method === 'GET') {
-    //   fs.writeFile('data/testFile2.txt', files, (err) => { 
-    //     res.writeHead(200, { 'Content-Type': 'application/json' });
-    //     if (err) {
-    //       let json = { status:false, message: 'It seems there is a mistake somewhere' };
-    //       res.end(JSON.stringify(json));
-    //     }else {
-    //       console.log(files)
-    //       let json = { status:true, message:'File Created', data:files };
-    //       res.end(JSON.stringify(json));
-    //     }
-    //   }) 
+    // const content = "just a random bla blalalgk glggl"
+    // if(req.url === '/create' && req.method === 'GET') {
+    //   notes.createNote(res, content)
     // } else {
     //   res.writeHead(404, { 'Content-Type': 'application/json' })
     //   res.end(JSON.stringify({ message: 'Route not found'}))
     // }
 
-    if(req.url === '/delete' && req.method === 'GET') {
-      fs.unlink('data/testFile2.txt', (err) => { 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        if (err) {
-          let json = { status:false, message: 'It seems there is a mistake somewhere' };
-          res.end(JSON.stringify(json));
-        }else {
-          let json = { status:true, message:'File Deleted' };
-          res.end(JSON.stringify(json));
-        }
-      }) 
-    } else {
-      res.writeHead(404, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Route not found'}))
-    }
+    // if(req.url === '/update' && req.method === 'GET') {
+    //   notes.createNote(res, content)
+    // } else {
+    //   res.writeHead(404, { 'Content-Type': 'application/json' })
+    //   res.end(JSON.stringify({ message: 'Route not found'}))
+    // }
 
-    if(req.url === '/rename' && req.method === 'GET') {
-      fs.rename('data/testFile.txt', 'data/testFileMain.txt', (err) => { 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        if (err) {
-          let json = { status:false, message: 'It seems there is a mistake somewhere' };
-          res.end(JSON.stringify(json));
-        }else {
-          let json = { status:true, message:'File Renamed' };
-          res.end(JSON.stringify(json));
-        }
-      }) 
-    } else {
-      res.writeHead(404, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Route not found'}))
-    }
+    // const name = 'testFile'
+    // if(req.url === '/delete' && req.method === 'GET') {
+    //   notes.deleteNote(res, name)
+    // } else {
+    //   res.writeHead(404, { 'Content-Type': 'application/json' })
+    //   res.end(JSON.stringify({ message: 'Route not found'}))
+    // }
+
+
+    // const oldName = 'testFile3'
+    // const newName = 'testFile1'
+    // if(req.url === '/rename' && req.method === 'GET') {
+    //   notes.renameNote(res, oldName, newName)
+    // } else {
+    //   res.writeHead(404, { 'Content-Type': 'application/json' })
+    //   res.end(JSON.stringify({ message: 'Route not found'}))
+    // }
+
+    
 
 
 
