@@ -9,15 +9,30 @@ btn.addEventListener('click', loadNotes);
 
 // let url = 'http://127.0.0.1:5000/';  https://api.github.com/users
 
+
+
 function loadNotes(){
   let xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://127.0.0.1:5000/', true);
+  // xhr.open('GET', 'https://api.github.com/users', true);
 
   xhr.onload = function() {
     if(this.status == 200) {
       let listNotes = JSON.parse(this.responseText)
 
-      console.log(listNotes)
+      // console.log(listNotes)
+      // let listNotesOutput = '';
+      for(let oneNote in listNotes) {
+        console.log(listNotes[oneNote])
+      //   listNotesOutput += `
+      //     <div class="listNote">
+      //       <ul>
+      //         <li>${listNotes[oneNote]}</li>
+      //       </ul>
+      //     </div>
+      //   `
+      }
+      // document.getElementById('listNotes').innerHTML = listNotesOutput;
     }
   }
 

@@ -1,13 +1,20 @@
 class Note {
   constructor() {
     this.fs = require('fs')
+    this.headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+      // 'Access-Control-Allow-Headers': '*',
+      // "Access-Control-Max-Age": 86400
+    }
     
   }
 
   // Get all the available notes
   getAllNotes(res) {
     this.fs.readdir('data', (err, files) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
@@ -21,7 +28,7 @@ class Note {
   // Displays the content of the selected note
   getOneNote(res, noteName) {
     this.fs.readFile(`data/${noteName}.txt`, 'utf-8', (err, data) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
@@ -36,7 +43,7 @@ class Note {
   // Creates a note
   createNote(res, noteName, noteContent) {
     this.fs.writeFile(`data/${noteName}.txt`, noteContent, (err) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
@@ -50,7 +57,7 @@ class Note {
   // Update a selected note
   updateNote(res, noteName, noteContent) {
     this.fs.writeFile(`data/${noteName}.txt`, noteContent, (err) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
@@ -64,7 +71,7 @@ class Note {
   // delete a selected note
   deleteNote(res, noteName) {
     this.fs.unlink(`data/${noteName}.txt`, (err) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
@@ -78,7 +85,7 @@ class Note {
   // rename a selected note
   renameNote(res, oldName, newName) {
     this.fs.rename(`data/${oldName}.txt`, `data/${newName}.txt`, (err) => { 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, this.headers);
       if (err) {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
