@@ -25,57 +25,7 @@ const server = http.createServer((req, res) => {
 
   }
 
-  // if(req.url === '/read' && req.method === 'GET') {
-  //   notes.getOneNote(res)
-  //   } else {
-  //     res.writeHead(404, { 'Content-Type': 'application/json' })
-  //     res.end(JSON.stringify({ message: 'Route not found'}))
-  // }
 
-    // const content = "just a random bla blalalgk glggl"
-    // if(req.url === '/create' && req.method === 'GET') {
-    //   notes.createNote(res, content)
-    // } else {
-    //   res.writeHead(404, { 'Content-Type': 'application/json' })
-    //   res.end(JSON.stringify({ message: 'Route not found'}))
-    // }
-
-    // if(req.url === '/update' && req.method === 'GET') {
-    //   notes.createNote(res, content)
-    // } else {
-    //   res.writeHead(404, { 'Content-Type': 'application/json' })
-    //   res.end(JSON.stringify({ message: 'Route not found'}))
-    // }
-
-    // const name = 'testFile'
-    // if(req.url === '/delete' && req.method === 'GET') {
-    //   notes.deleteNote(res, name)
-    // } else {
-    //   res.writeHead(404, { 'Content-Type': 'application/json' })
-    //   res.end(JSON.stringify({ message: 'Route not found'}))
-    // }
-
-
-    // const oldName = 'testFile3'
-    // const newName = 'testFile1'
-    // if(req.url === '/rename' && req.method === 'GET') {
-    //   notes.renameNote(res, oldName, newName)
-    // } else {
-    //   res.writeHead(404, { 'Content-Type': 'application/json' })
-    //   res.end(JSON.stringify({ message: 'Route not found'}))
-    // }
-
-    
-
-
-
-
-
-
-  // res.statusCode = 200;
-  // res.setHeader('Content-Type', 'text/html');
-  // res.write('<h1>Hello world</h1>');
-  // res.end();
 });
 
 
