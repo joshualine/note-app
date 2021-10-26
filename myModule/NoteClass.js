@@ -33,7 +33,6 @@ class Note {
         let json = { status:false, message: 'It seems there is a mistake somewhere' };
         res.end(JSON.stringify(json));
       }else {
-        console.log(files)
         let json = { status:true, message:'Files Retrieved:', data:data };
         res.end(JSON.stringify(json));
       }
