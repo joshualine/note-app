@@ -1,6 +1,6 @@
 const http = require("http");
 const url = require('url')
-const notes = require("./myModule/NoteClass")
+const notes = require("./controllers/Notes")
 
 
 
